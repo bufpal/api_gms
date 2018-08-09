@@ -14,7 +14,7 @@ SECRET_KEY = 'l3p7c%zv54_ukdlq+ssyi)b%x_i06u68m3#a5%)20@#5t70lj!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'corsheaders',
     
     'accounts',
     'v1',
@@ -147,3 +149,5 @@ JWT_AUTH = {
 REST_USE_JWT = True
 
 SITE_ID = 1
+
+CORS_ORIGIN_ALLOW_ALL=True
