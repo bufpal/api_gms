@@ -45,7 +45,11 @@ class ProfileListSerializer(serializers.ModelSerializer):
         )
     
     def get_post_count(self, obj):
-        return obj.user.post_set.all().count()
+        if obj.user.post_set.all():
+            count = obj.user.post_set.all().count()
+        else:
+            count = 0
+        return count
 
     def get_like_count(self, obj):
         like_count = 0
