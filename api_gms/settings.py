@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'v1',
+    'admin_page',
 
     'rest_framework',
     'rest_framework.authtoken',

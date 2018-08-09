@@ -1,0 +1,95 @@
+{% extends 'admin_page/layout.html' %}
+
+{% block title %} {{ profile.user.username }}'s profile {% endblock %}
+
+{% block content %}
+<div class="container my-5">
+
+<div class="card" style="width: 100%;">
+    <div class="card-header">
+        <h3 class="card-title text-black">{{ profile.user.username }} 님의 프로필 입니다</h3>
+    </div>
+    
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">이름: {{ profile.user.username }}</li>
+            <li class="list-group-item">이메일: {{ profile.user.email }}</li>
+            <li class="list-group-item">핸드폰: {{ profile.phone_number }}</li>
+            <li class="list-group-item">FaceBook UID: {{ profile.fbuid }}</li>
+            <li class="list-group-item">소속학교: {{ profile.school }}</li>
+            <li class="list-group-item" style="text-decoration:None; color:white;">OneSignal PID: {{ profile.ospid }}</li>
+        </ul>
+    </div>
+
+    <div class="card-body">
+        <h5>현재 유저위치 확인</h5>
+        <div class="form-group">
+            <label for="latlng">Location Point</label>
+            <input id="latlng" type="text" class="form-control" placeholder="Enter Location" style="width:30%;">
+            <small class="form-text text-muted">OneSignal 에서 
+                    <a href="https://onesignal.com/apps/9a05f03c-47bc-4914-b4ba-cd76c08fcef4/players?user_search%5Bid%5D={{profile.ospid}}" target="_blank">
+                        "Location Point"
+                    </a>
+                    정보를 가져오세요
+            </small>
+        </div>
+        <button id="submit" type="submit" class="btn btn-primary">위치 확인</button>
+        
+        <div id="map" class="mt-3" style="width:100%;height:600px;">
+    </div>
+</div>
+
+</div>
+
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: {{lat}}, lng: {{lng}}}
+        });
+
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeLatLng(geocoder, map, infowindow);
+        });
+    }
+
+    function geocodeLatLng(geocoder, map, infowindow) {
+        var input = document.getElementById('latlng').value;
+        var latlngStr = input.split(',', 2);
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+
+        geocoder.geocode({'location': latlng}, function(results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    map.setZoom(17);
+                    var marker = new google.maps.Marker({
+                        position: latlng,
+                        map: map
+                    });
+                    
+                    var contentString = '<div id="content" style="color:black;">'
+                        +'<strong>'
+                        +results[0].formatted_address
+                        +'</strong>'
+                        +'</div>'
+                    infowindow.setContent(contentString);
+                    infowindow.open(map, marker);
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+            window.alert('Geocoder failed due to: ' + status);
+            }
+        });
+    }
+
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrrQQ1h_p9PSUaDOzL9oC3vOykVv2a9dI&callback=initMap">
+</script>
+    
+{% endblock %}

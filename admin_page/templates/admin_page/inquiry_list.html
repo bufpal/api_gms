@@ -1,0 +1,35 @@
+{% extends 'admin_page/layout.html' %}
+
+{% block title %} QnA manager {% endblock %}
+
+{% block content %}
+<div class="container">
+
+<div class="jumbotron mt-5">
+    <h1 class="display-5">Q&A 관리 페이지 입니다.</h1>
+    <p class="lead" style="color:bisque;">아래 항목을 선택하여 유저 질문을 관리하세요.</p>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">이름</th>
+        <th scope="col">소속학교</th>
+        <th scope="col">질문제목</th>
+        <th scope="col">질문날짜</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inquiry in inquiry_list %}
+        <tr class="table-dark">
+        <th scope="row"><a style="text-decoration:None;color:black;" href="{% url 'admin-page:inquiry-detail' inquiry.pk %}">{{ inquiry.user.username }}</a></th>
+        <td>{{ inquiry.get_school_display }}</td>
+        <td>{{ inquiry.title }}</td>
+        <td>{{ inquiry.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+{% endblock %}

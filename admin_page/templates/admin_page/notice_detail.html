@@ -1,0 +1,23 @@
+{% extends 'admin_page/layout.html' %}
+
+{% block title %} {{ notice.get_notice_type_display }} {% endblock %}
+
+{% block content %}
+<div class="container">
+
+<div class="card mt-5">
+    <div class="card-header">
+        <h3>{{ notice.title }}</h3>
+        Notice Type: {{ notice.get_notice_type_display }}<br>
+        Posted at: {{ notice.created_at}}
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+        <p> {{ notice.content|linebreaks }}</p>
+        </blockquote>
+    </div>
+</div>
+
+
+</div>
+{% endblock %}

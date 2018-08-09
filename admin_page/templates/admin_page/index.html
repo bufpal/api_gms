@@ -1,0 +1,46 @@
+{% extends 'admin_page/layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+<div class="jumbotron" style="background-color:crimson;">
+    <h1 class="display-5">Hello {{ request.user }}, </br>Welcome to the GMS Admin page</h1>
+    <p class="lead" style="color:bisque;"></p>
+</div>
+
+
+<div style="margin-left:5%;">
+    <a href="{% url 'admin-page:profile-list' %}">
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;float:left">
+        <div class="card-header">User</div>
+        <div class="card-body">
+            <h4 class="card-title">유저관리 페이지</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+    </a>
+
+    <a href="{% url 'admin-page:inquiry-list' %}">
+    <div class="card text-white bg-secondary mb-3 ml-3 mr-3" style="max-width: 20rem;float:left">
+        <div class="card-header">QnA</div>
+        <div class="card-body">
+            <h4 class="card-title">QnA 문의 관리 페이지</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+    </a>
+
+    <a href="{% url 'admin-page:notice-list' %}">
+    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+        <div class="card-header">Notice</div>
+        <div class="card-body">
+            <h4 class="card-title">공지 관리 페이지</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+    </a>
+
+</div>
+
+</div>
+{% endblock %}
