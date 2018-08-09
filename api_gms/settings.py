@@ -131,6 +131,9 @@ REST_FRAMEWORK = {
 	'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
 	],
+
+    # Input and output formats
+    'DATETIME_FORMAT': '%m-%d, %Y',
 }
 
 JWT_AUTH = {
