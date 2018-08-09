@@ -23,7 +23,7 @@ class Profile(models.Model):
     level = models.CharField(max_length=3, choices=LEVEL_STATUS, blank=True)
     avatar = models.CharField(max_length=600, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    udpated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
     class Meta:
