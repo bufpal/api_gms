@@ -1,9 +1,16 @@
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 from rest_framework import viewsets
 
 from .models import Profile
 from .serializers import ProfileSerializer, ProfileListSerializer
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
+
 
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
