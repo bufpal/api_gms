@@ -19,4 +19,4 @@ urlpatterns = [
     re_path(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
