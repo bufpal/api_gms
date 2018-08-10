@@ -19,7 +19,7 @@ EXPOSE 80
 
 CMD ["uwsgi", "--plugins", "http,python", \
               "--http", "0.0.0.0:80", \
-              "--wsgi-file", "/code/askdjango/wsgi.py", \
+              "--wsgi-file", "/code/api_gms/wsgi.py", \
               "--master", \
               "--die-on-term", \
               "--single-interpreter", \
