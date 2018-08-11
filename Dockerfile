@@ -10,7 +10,7 @@ WORKDIR /code
 COPY . /code/
 
 ENV LANG c.UTF-8
-ENV DJANGO_SETTINGS_MODULE askdjango.settings.prod
+ENV DJANGO_SETTINGS_MODULE api_gms.settings.prod
 ENV PYTHONUNBUFFERED 1
 
 RUN pip3 install -r requirements.txt
