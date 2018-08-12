@@ -1,5 +1,7 @@
 from .common import *
 
+DEBUG=False
+
 STATICFILES_STORAGE = 'api_gms.storages.StaticAzureStorage'
 DEFAULT_FILE_STORAGE = 'api_gms.storages.MediaAzureStorage'
 
