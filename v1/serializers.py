@@ -28,7 +28,11 @@ class InquiryCommentSerializer(serializers.ModelSerializer):
         return str(obj.user.username)
 
     def get_user_lv(self, obj):
-        user = Profile.objects.get(user_id=obj.user.pk)
+        try:
+            user = Profile.objects.get(user_id=obj.user.pk)
+        except Profile.DoesNotExist:
+            return ''    
+        
         return str(user.level)
 
     def get_user_pk(self, obj):
