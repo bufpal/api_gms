@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 import datetime
 import os
 
@@ -163,3 +164,7 @@ REST_USE_JWT = True
 SITE_ID = 1
 
 CORS_ORIGIN_ALLOW_ALL=True
+
+LOGIN_URL = reverse_lazy('admin-page:login')
+LOGIN_REDIRECT_URL = reverse_lazy('admin-page:root')
+LOGOUT_REDIRECT_URL = reverse_lazy('admin-page:login')

@@ -1,13 +1,16 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import get_object_or_404, redirect, render
 
 from accounts.models import Profile
 from v1.models import Inquiry, Notice
 from .forms import InquiryCommentForm, NoticeForm
 
+@user_passes_test(lambda u: u.is_superuser)
 def root_page(request):
     return render(request, 'admin_page/index.html')
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def profile_list(request):
     qs = Profile.objects.all()
     q = request.GET.get('q', '')
@@ -19,6 +22,7 @@ def profile_list(request):
     })
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def profile_detail(request, pk):
     profile = get_object_or_404(Profile, pk=pk)
 
@@ -36,6 +40,7 @@ def profile_detail(request, pk):
     })
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def inquiry_list(request):
     inquiry_list = Inquiry.objects.all().select_related('user')
 
@@ -44,6 +49,7 @@ def inquiry_list(request):
     })
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def inquriy_detail(request, pk):
     inquiry = get_object_or_404(Inquiry, pk=pk)
     if request.method == 'POST':
@@ -63,6 +69,7 @@ def inquriy_detail(request, pk):
     })
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def notice_list(request):
     notice = Notice.objects.all()
 
@@ -71,6 +78,7 @@ def notice_list(request):
     })
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def notice_detail(request, pk):
     notice = get_object_or_404(Notice, pk=pk)
 
@@ -79,6 +87,7 @@ def notice_detail(request, pk):
     })
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def notice_new(request):
     if request.method == 'POST':
         form = NoticeForm(request.POST, request.FILES)
