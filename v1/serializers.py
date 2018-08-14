@@ -53,7 +53,11 @@ class InquirySerializer(serializers.ModelSerializer):
             'created_at',)
 
     def get_user_lv(self, obj):
-        user = Profile.objects.get(user_id=obj.user.pk)
+        try:
+            user = Profile.objects.get(user_id=obj.user.pk)
+        except Profile.DoesNotExist:
+            return ''    
+        
         return str(user.level)
 
 
@@ -69,7 +73,11 @@ class PostCommentSerializer(serializers.ModelSerializer):
         return str(obj.user.username)
 
     def get_user_lv(self, obj):
-        user = Profile.objects.get(user_id=obj.user.pk)
+        try:
+            user = Profile.objects.get(user_id=obj.user.pk)
+        except Profile.DoesNotExist:
+            return ''    
+        
         return str(user.level)
 
 
@@ -102,7 +110,11 @@ class NoticeCommentSerializer(serializers.ModelSerializer):
 
     
     def get_user_lv(self, obj):
-        user = Profile.objects.get(user_id=obj.user.pk)
+         try:
+            user = Profile.objects.get(user_id=obj.user.pk)
+        except Profile.DoesNotExist:
+            return ''    
+        
         return str(user.level)
 
 
@@ -125,7 +137,11 @@ class FaqCommentSerializer(serializers.ModelSerializer):
         fields = ('pk', 'user_pk', 'user_username', 'user_lv', 'faq', 'comment', 'avatar', 'created_at')
 
     def get_user_lv(self, obj):
-        user = Profile.objects.get(user_id=obj.user.pk)
+        try:
+            user = Profile.objects.get(user_id=obj.user.pk)
+        except Profile.DoesNotExist:
+            return ''    
+        
         return str(user.level)
 
 
