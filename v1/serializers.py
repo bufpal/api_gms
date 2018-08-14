@@ -110,7 +110,7 @@ class NoticeCommentSerializer(serializers.ModelSerializer):
 
     
     def get_user_lv(self, obj):
-         try:
+        try:
             user = Profile.objects.get(user_id=obj.user.pk)
         except Profile.DoesNotExist:
             return ''    
