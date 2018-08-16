@@ -15,8 +15,8 @@ urlpatterns = [
     path('admin-page/', include('admin_page.urls', namespace='admin-page')),
     
     path('api-jwt-auth/', obtain_jwt_token),
-    path('api-jwt-auth/refresh/$', refresh_jwt_token),
-    path('api-jwt-auth/verify/$', verify_jwt_token),
+    path('api-jwt-auth/refresh/', refresh_jwt_token),
+    path('api-jwt-auth/verify/', verify_jwt_token),
 
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
