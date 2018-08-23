@@ -92,7 +92,11 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ('pk', 'user_pk', 'user_username', 'user_lv', 'title', 'message', 'avatar', 'comment_set', 'likes', 'school', 'created_at',)
 
     def get_user_lv(self, obj):
-        user = Profile.objects.get(user_id=obj.user.pk)
+        try:
+            user = Profile.objects.get(user_id=obj.user.pk)
+        except Profile.DoesNotExist:
+            return ''    
+        
         return str(user.level)
 
 
