@@ -168,3 +168,7 @@ CORS_ORIGIN_ALLOW_ALL=True
 LOGIN_URL = reverse_lazy('admin-page:login')
 LOGIN_REDIRECT_URL = reverse_lazy('admin-page:root')
 LOGOUT_REDIRECT_URL = reverse_lazy('admin-page:login')
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+SOCIALACCOUNT_EMAIL_REQUIRED = False
+SOCIALACCOUNT_QUERY_EMAIL = True
