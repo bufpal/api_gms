@@ -8,7 +8,9 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', lambda r: redirect('admin-page:root'), name='admin-root'),
+    # path('', lambda r: redirect('admin-page:root'), name='admin-root'),
+
+    path('admin-page/', include('admin_page.urls', namespace='admin-page')),
 
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('api/v1/', include('v1.urls', namespace='v1')),

@@ -6,7 +6,7 @@ from . import views
 app_name = 'admin-page'
 
 urlpatterns = [
-    path('', views.root_page, name='root'),
+    path('', views.root_page, name='admin-root'),
     re_path(r'^users/$', views.profile_list, name='profile-list'),
     re_path(r'^users/(?P<pk>\d+)/$', views.profile_detail, name='profile-detail'),
 
