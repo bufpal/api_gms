@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'accounts',
     'v1',
     'admin_page',
+    'gmsweb',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -132,7 +133,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-
+    os.path.join(BASE_DIR, 'api_gms', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
